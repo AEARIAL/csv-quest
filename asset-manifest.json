@@ -1,0 +1,10 @@
+{
+  "files": {
+    "main.js": "/csv-quest/static/js/main.5b0299cb.js",
+    "index.html": "/csv-quest/index.html",
+    "main.5b0299cb.js.map": "/csv-quest/static/js/main.5b0299cb.js.map"
+  },
+  "entrypoints": [
+    "static/js/main.5b0299cb.js"
+  ]
+}
