@@ -15,11 +15,15 @@ function QuizApp() {
     function handleFileUpload(event) {
         const file = event.target.files[0];
         if (!file) return;
-
+    
         const reader = new FileReader();
         reader.onload = function (e) {
             const csv = e.target.result;
-            const parsed = Papa.parse(csv, { header: false }).data.filter(row => row.length >= 2);
+            let parsed = Papa.parse(csv, { header: false }).data.filter(row => row.length >= 2);
+            
+            // 問題をシャッフルする
+            parsed = shuffleArray(parsed);
+    
             setQuestions(parsed);
             setFileLoaded(true);
             setCurrentQuestionIndex(0);
@@ -30,6 +34,15 @@ function QuizApp() {
         };
         reader.readAsText(file);
     }
+    
+    // 配列をシャッフルする関数
+    function shuffleArray(array) {
+        return array
+            .map(value => ({ value, sort: Math.random() }))
+            .sort((a, b) => a.sort - b.sort)
+            .map(({ value }) => value);
+    }
+    
 
     function generateChoices(questions, index) {
         if (index >= questions.length) return;
